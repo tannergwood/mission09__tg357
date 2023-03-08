@@ -11,6 +11,8 @@
 
     @foreach (string t in Model)
             {
+                @*Here I added in border-success and making the text black in the categories on the side and then made it so the buttons filled green instead of blue and the borders green unless it was selected then the borders are black *@
+                
                 <a class="border border-success btn text-black @(ViewBag.SelectedType == t ? "btn-success border border-dark" : "btn-outline-secondary")"
                    asp-controller="Home" asp-action="Index" asp-route-bookCategory="@t" asp-route-pageNum="1">@t</a>
             }

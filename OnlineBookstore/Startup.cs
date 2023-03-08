@@ -35,6 +35,12 @@ namespace OnlineBookstore
             });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession();
         }
 
         //This configures the HTTP Pipeline
@@ -47,16 +53,30 @@ namespace OnlineBookstore
             //allow usage of wwwroot folder
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("typepage",
+                    "{bookCategory}/Page{pageNum}",
+                    new { Controller = "Home", action = "Index" });
+
                 //make the urls pretty
                 endpoints.MapControllerRoute("pagination",
                     "Page{pageNum}",
                     new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("type",
+                    "{bookCategory}",
+                    new { Controller = "Home", action = "Index", pageNum = 1 }); 
+                
+                
                 //just use default controller endpoints
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
             });
         }
     }

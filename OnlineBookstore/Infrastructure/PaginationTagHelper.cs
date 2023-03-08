@@ -31,7 +31,7 @@ namespace OnlineBookstore.Infrastructure
         public string PageAction { get; set; }
 
         //This line is from textbook
-        public bool PageClassesEnabled { get; set; } = false;
+        public bool PageClassesEnabled { get; set; }
 
         public string PageClass { get; set; }
         public string PageClassNormal { get; set; }
@@ -43,7 +43,7 @@ namespace OnlineBookstore.Infrastructure
 
             TagBuilder final = new TagBuilder("div");
 
-            for (int i = 1; i < PageBooks.TotalPages + 1; i++)
+            for (int i = 1; i <= PageBooks.TotalPages; i++)
             {
                 TagBuilder tb = new TagBuilder("a");
 
@@ -54,6 +54,7 @@ namespace OnlineBookstore.Infrastructure
                     tb.AddCssClass(i == PageBooks.CurrentPage
                         ? PageClassSelected : PageClassNormal);
                 }
+                tb.AddCssClass(PageClass);
                 tb.InnerHtml.Append(i.ToString());
 
                 final.InnerHtml.AppendHtml(tb);

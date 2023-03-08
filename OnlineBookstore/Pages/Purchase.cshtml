@@ -3,38 +3,44 @@
 @{
 }
 
+<h2 class="m-2">Your Cart</h2>
+<div class="row">
+    <!--I changed up how many cols the table takes to get it to look better and not go all the way to the end of the website-->
+    <div class="col-1"></div>
+    <div class="col-10">
+        <!-- Here I changed the border color for the table to make it match more-->
+        <table class="table table-bordered table-striped border-success m-1">
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booky in Model.basket.Items)
+                {
+                    <tr>
+                        <td>@booky.Book.Title</td>
+                        <td>@booky.Quantity</td>
+                        <td>@(booky.Book.Price.ToString("c"))</td>
+                        <td>@((booky.Quantity * booky.Book.Price).ToString("c"))</td>
+                    </tr>
+                }
+            </tbody>
 
-<h2>Your Cart</h2>
-
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Book</th>
-            <th>Quantity</th>
-            <th>Cost</th>
-            <th>Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var booky in Model.basket.Items)
-            {
-        <tr>
-            <td>@booky.Book.Title</td>
-            <td>@booky.Quantity</td>
-            <td>@(booky.Book.Price.ToString("c"))</td>
-            <td>@((booky.Quantity * booky.Book.Price).ToString("c"))</td>
-        </tr>
-            }
-    </tbody>
-
-    <tfoot>
-        <tr>
-            <td colspan="3">Total:</td>
-            <td>@Model.basket.CalculateTotal().ToString("c")</td>
-        </tr>
-    </tfoot>
-</table>
-
-<div>
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Browsing</a>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total:</td>
+                    <td>@Model.basket.CalculateTotal().ToString("c")</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="m-1 text-center">
+    <!--Here I changed the text color, boldness, border, and button color for this button-->
+    <a class="btn btn-success border border-dark text-dark fw-bolder" href="@Model.ReturnUrl">Continue Browsing</a>
 </div>

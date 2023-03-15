@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"]</title>
     <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
     <h1 class="border-5">My Lit Bookstore</h1>
     <div class="bg-dark text-white p-2">
         <span class="navbar-brand m-lg-2">Lit Bookstore</span>
         <!--Here is some bootstrap I added in to add an image and get it the right size and place on the webiste-->
-        <img class="float-end m-0 border border-success" width="30" src="~/img/lilbook.png" />
+        <img class="float-md-start m-0 border border-success" width="30" src="~/img/lilbook.png" />
+        <div class="float-end">
+            <vc:basket-summary></vc:basket-summary>
+
+        </div>
     </div>
     <div class="row m-1 p-1">
         <div id="types" class="col-3">

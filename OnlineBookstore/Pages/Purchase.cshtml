@@ -16,16 +16,24 @@
                     <th>Quantity</th>
                     <th>Cost</th>
                     <th>Subtotal</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var booky in Model.basket.Items)
                 {
                     <tr>
-                        <td>@booky.Book.Title</td>
-                        <td>@booky.Quantity</td>
-                        <td>@(booky.Book.Price.ToString("c"))</td>
-                        <td>@((booky.Quantity * booky.Book.Price).ToString("c"))</td>
+                        <td class="text-center">@booky.Book.Title</td>
+                        <td class="text-center">@booky.Quantity</td>
+                        <td class="text-center">@(booky.Book.Price.ToString("c"))</td>
+                        <td class="text-center">@((booky.Quantity * booky.Book.Price).ToString("c"))</td>
+                        <td class="text-center">
+                            <form method="post" asp-page-handler="Delete">
+                                <input type="hidden" name="bookId" value="@booky.Book.BookId" />
+                                <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -33,7 +41,8 @@
             <tfoot>
                 <tr>
                     <td colspan="3">Total:</td>
-                    <td>@Model.basket.CalculateTotal().ToString("c")</td>
+                    <td colspan="9" class="text-center">@Model.basket.CalculateTotal().ToString("c")</td>
+                    
                 </tr>
             </tfoot>
         </table>
@@ -43,4 +52,5 @@
 <div class="m-1 text-center">
     <!--Here I changed the text color, boldness, border, and button color for this button-->
     <a class="btn btn-success border border-dark text-dark fw-bolder" href="@Model.ReturnUrl">Continue Browsing</a>
+    <a class="btn btn-success border border-dark text-dark fw-bolder" asp-action="Checkout" asp-controller="Purchase">Purchase</a>
 </div>

@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@model Purchase
+
+
+<h2>Submit Purchase</h2>
+
+<p>Please enter your details so you can get yo book</p>
+
+<form asp-action="Checkout" asp-controller="Purchase" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <h4>Ship to:</h4>
+    <div class="mb-3">
+        <label asp-for="FName">First Name:</label>
+        <input asp-for="FName" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="LName">Last Name:</label>
+        <input asp-for="LName" />
+    </div>
+    <h4>Address:</h4>
+    <div class="mb-3">
+        <label asp-for="AddressLine1">Address Line 1:</label>
+        <input asp-for="AddressLine1" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="AddressLine2">Address Line 2:</label>
+        <input asp-for="AddressLine2" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="AddressLine3">Address Line 3:</label>
+        <input asp-for="AddressLine3" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="City">City</label>
+        <input asp-for="City" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="State">State</label>
+        <input asp-for="State" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Zip">ZIP</label>
+        <input asp-for="Zip" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Country">Country</label>
+        <input asp-for="Country" />
+    </div>
+    <div class="mb-3 float-end">
+        <input class="btn btn-primary" type="submit" value="Purchase" />
+    </div>
+</form>
